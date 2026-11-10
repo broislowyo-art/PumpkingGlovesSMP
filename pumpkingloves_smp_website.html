@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#11100e">
+  <meta name="description" content="PumpkinGloves SMP — a Minecraft survival server with a little pumpkin power and a lot of boxing spirit.">
+  <title>PumpkinGloves SMP | Enter the ring</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700;800&display=swap');
+    :root{--bg:#11100e;--panel:#1b1916;--panel2:#24211c;--orange:#ff8a24;--gold:#ffc15a;--cream:#fff3df;--muted:#b7aa98;--line:#3b3329}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--cream);font-family:"DM Sans",sans-serif}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .wrap{width:min(1120px,calc(100% - 40px));margin:auto}
+    .topbar{position:sticky;top:0;z-index:10;background:rgba(17,16,14,.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.07)}
+    nav{height:76px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:.3px}
+    .brand-icon{width:42px;height:42px;border-radius:13px;background:linear-gradient(145deg,#ffad45,#e65c12);display:grid;place-items:center;font-size:24px;box-shadow:0 5px 22px #f0782333}
+    .brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-top:2px}
+    .navlinks{display:flex;align-items:center;gap:28px;color:#d2c5b3;font-size:13px;font-weight:700}
+    .navlinks a:hover{color:var(--gold)}
+    .nav-cta,.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:10px;padding:13px 19px;background:var(--orange);color:#1b1007;font-weight:800;cursor:pointer;transition:.2s}
+    .nav-cta:hover,.btn:hover{background:var(--gold);transform:translateY(-2px)}
+    .menu{display:none;background:none;border:1px solid var(--line);color:var(--cream);padding:8px 11px;border-radius:8px}
+    .hero{position:relative;overflow:hidden;padding:100px 0 94px;background:radial-gradient(ellipse at 78% 42%,#8c3d132e,transparent 38%),linear-gradient(180deg,#19140f 0%,var(--bg) 100%)}
+    .hero:before{content:"";position:absolute;width:470px;height:470px;border:1px solid #ff9a2b20;border-radius:50%;right:-120px;top:-100px;box-shadow:0 0 0 35px #ff9a2b08,0 0 0 75px #ff9a2b06}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:50px;position:relative}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--gold);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;font-weight:800}
+    .dot{width:7px;height:7px;border-radius:50%;background:#8bd17c;box-shadow:0 0 12px #8bd17c}
+    h1,h2,h3{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;margin:0;line-height:.95}
+    h1{font-size:clamp(62px,8vw,106px);font-weight:900;letter-spacing:-2px;margin:20px 0}
+    h1 span{color:var(--orange);display:block;text-shadow:4px 5px 0 #642a12}
+    .hero p{max-width:490px;color:var(--muted);line-height:1.8;font-size:15px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .btn.secondary{background:transparent;color:var(--cream);border:1px solid #65513b}
+    .btn.secondary:hover{border-color:var(--orange);color:var(--gold);background:#ff8a2410}
+    .hero-art{min-height:390px;display:grid;place-items:center;position:relative}
+    .glove{font-size:clamp(145px,21vw,245px);filter:drop-shadow(0 24px 18px #0009);transform:rotate(-13deg);animation:float 4s ease-in-out infinite;z-index:1}
+    .art-ring{position:absolute;width:310px;height:310px;border:14px solid #ff8a2430;border-radius:50%;box-shadow:0 0 0 18px #ff8a2410,inset 0 0 35px #ff8a2410}
+    .art-tag{position:absolute;bottom:25px;right:0;background:var(--panel2);border:1px solid var(--line);padding:13px 17px;border-radius:12px;font-size:12px;font-weight:800;transform:rotate(-4deg)}
+    @keyframes float{0%,100%{transform:translateY(0) rotate(-13deg)}50%{transform:translateY(-13px) rotate(-8deg)}}
+    .server-card{margin-top:-1px;position:relative}
+    .server-inner{background:linear-gradient(110deg,#292017,#1d1a16);border:1px solid #59412a;border-radius:16px;padding:22px 26px;display:flex;align-items:center;justify-content:space-between;gap:20px;box-shadow:0 18px 45px #0003}
+    .server-label{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:2px;font-weight:800}
+    .server-ip{font-size:20px;font-weight:800;margin-top:7px;letter-spacing:.3px}
+    .copy{background:#3b2b1b;color:var(--gold);border:1px solid #72502b;border-radius:9px;padding:11px 15px;font-weight:800;cursor:pointer}
+    .copy:hover{background:#52391e}
+    section{padding:88px 0}
+    .section-head{text-align:center;margin-bottom:40px}
+    .section-head h2{font-size:clamp(42px,6vw,62px);margin:13px 0}
+    .section-head p{color:var(--muted);max-width:560px;margin:0 auto;line-height:1.7;font-size:14px}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:25px;transition:.2s}
+    .card:hover{transform:translateY(-5px);border-color:#9b5a27}
+    .card-icon{width:48px;height:48px;display:grid;place-items:center;background:#ff8a2419;border:1px solid #ff8a2433;border-radius:13px;font-size:24px;margin-bottom:20px}
+    .card h3{font-size:27px;margin-bottom:11px;letter-spacing:.3px}
+    .card p{font-size:13px;line-height:1.75;color:var(--muted);margin:0}
+    .about{background:#171511;border-top:1px solid #29241d;border-bottom:1px solid #29241d}
+    .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:65px;align-items:center}
+    .about-stamp{min-height:300px;border-radius:20px;background:radial-gradient(circle at 50% 45%,#ff9b3a2c,transparent 55%),#211b14;border:1px solid #4c3824;display:grid;place-items:center;position:relative;overflow:hidden}
+    .about-stamp:before,.about-stamp:after{content:"";position:absolute;width:230px;height:230px;border:1px dashed #ff9a2b55;border-radius:50%}
+    .about-stamp:after{width:280px;height:280px}
+    .stamp-emoji{font-size:130px;z-index:1;filter:drop-shadow(0 15px 15px #0008)}
+    .about-copy h2{font-size:clamp(42px,5vw,60px);margin:15px 0}
+    .about-copy p{color:var(--muted);font-size:14px;line-height:1.85}
+    .rules{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:25px}
+    .rule{display:flex;gap:11px;align-items:flex-start;background:var(--panel);padding:14px;border-radius:10px;border:1px solid #302a22;font-size:12px;color:#dfd2c0;line-height:1.5}
+    .rule b{color:var(--orange)}
+    .join{padding:90px 0;text-align:center;background:radial-gradient(ellipse at center,#78350f30,transparent 60%)}
+    .join h2{font-size:clamp(48px,7vw,76px);margin:16px 0}
+    .join p{color:var(--muted);font-size:14px;margin:0 auto 25px;max-width:520px;line-height:1.7}
+    footer{border-top:1px solid #302a22;padding:25px 0;color:#8f8374;font-size:11px}
+    .footer-inner{display:flex;justify-content:space-between;gap:15px;align-items:center}
+    .footer-inner strong{color:var(--cream)}
+    @media(max-width:760px){
+      .navlinks{display:none;position:absolute;top:76px;left:0;right:0;background:#171511;padding:22px;flex-direction:column;border-bottom:1px solid var(--line)}
+      .navlinks.open{display:flex}.menu{display:block}.nav-cta{display:none}
+      .hero{padding:65px 0 55px}.hero-grid{grid-template-columns:1fr;gap:5px}.hero-art{min-height:250px}.art-ring{width:220px;height:220px}.glove{font-size:165px}.art-tag{right:10%}
+      .cards{grid-template-columns:1fr}.about-grid{grid-template-columns:1fr;gap:35px}.about-stamp{min-height:230px}.stamp-emoji{font-size:100px}
+      section{padding:65px 0}.server-inner{align-items:flex-start;flex-direction:column}.server-ip{font-size:17px}.rules{grid-template-columns:1fr}
+      .footer-inner{flex-direction:column;text-align:center}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <nav>
+        <a class="brand" href="#home">
+          <span class="brand-icon">🎃</span>
+          <span>PUMPKINGLOVES<small>SMP • MINECRAFT SERVER</small></span>
+        </a>
+        <div class="navlinks" id="navlinks">
+          <a href="#about">ABOUT</a><a href="#features">FEATURES</a><a href="#rules">RULES</a><a href="#join">JOIN</a>
+        </div>
+        <a class="nav-cta" href="#join">JOIN THE SMP ↗</a>
+        <button class="menu" id="menu" aria-label="Toggle navigation">☰</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> THE PUMPKIN FIGHT CLUB</div>
+          <h1>GROW YOUR<br><span>LEGACY.</span></h1>
+          <p>Welcome to PumpkinGloves SMP — where survival meets the sweet science. Build your base, make allies, explore the world and step into the ring. Your story starts here.</p>
+          <div class="actions">
+            <a class="btn" href="#join">🥊 PLAY NOW</a>
+            <a class="btn secondary" href="#features">EXPLORE SERVER ↓</a>
+          </div>
+        </div>
+        <div class="hero-art" aria-label="Boxing glove and pumpkin theme">
+          <div class="art-ring"></div>
+          <div class="glove">🥊</div>
+          <div class="art-tag">PUMPKINS. PIXELS. PUNCHES.</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap server-card">
+      <div class="server-inner">
+        <div>
+          <div class="server-label">YOUR NEXT ADVENTURE STARTS HERE</div>
+          <div class="server-ip" id="serverIp">chords-guyana.tun.ply.gg</div>
+        </div>
+        <button class="copy" id="copyBtn">▣ COPY IP</button>
+      </div>
+    </div>
+
+    <section id="features">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">🥊 WHAT'S IN THE RING?</div>
+          <h2>MORE THAN JUST SURVIVAL</h2>
+          <p>A world to shape, friendships to make and a whole lot of blocky chaos. Here's what you can look forward to.</p>
+        </div>
+        <div class="cards">
+          <article class="card"><div class="card-icon">🌲</div><h3>CLASSIC SMP</h3><p>Gather resources, build your dream base and explore a shared survival world with the community.</p></article>
+          <article class="card"><div class="card-icon">🥊</div><h3>FIGHT NIGHT</h3><p>Bring your best gear and test your skills. Friendly rivalries and epic battles make every punch count.</p></article>
+          <article class="card"><div class="card-icon">🎃</div><h3>PUMPKIN POWER</h3><p>Embrace the server's pumpkin spirit. Make your mark, show off your style and become a legend.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="wrap about-grid">
+        <div class="about-stamp"><div class="stamp-emoji">🎃</div></div>
+        <div class="about-copy">
+          <div class="eyebrow">THE STORY BEHIND THE NAME</div>
+          <h2>ONE SERVER.<br><span style="color:var(--orange)">TWO FISTS.</span></h2>
+          <p>PumpkinGloves is a mash-up of two things: pumpkins and boxing gloves. It's a little ridiculous, a little chaotic, and that's exactly the point. Whether you're here to build peacefully, explore with friends or throw down in a friendly match, there's a place for you.</p>
+          <p><strong style="color:var(--gold)">Put on your gloves. Plant your pumpkins. Make history.</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="rules">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">📜 THE FIGHT CODE</div>
+          <h2>PLAY FAIR. HAVE FUN.</h2>
+          <p>Every good server needs a few ground rules. Respect the players and keep the world fun for everyone.</p>
+        </div>
+        <div class="rules">
+          <div class="rule"><b>01</b><span>Respect everyone. No harassment, bullying or hate speech.</span></div>
+          <div class="rule"><b>02</b><span>No cheating, hacked clients or unfair exploits.</span></div>
+          <div class="rule"><b>03</b><span>Don't grief or steal from other players.</span></div>
+          <div class="rule"><b>04</b><span>Keep chat friendly and don't spam.</span></div>
+          <div class="rule"><b>05</b><span>PvP only when everyone involved agrees or the event allows it.</span></div>
+          <div class="rule"><b>06</b><span>Listen to staff and help keep the SMP welcoming.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="join" id="join">
+      <div class="wrap">
+        <div class="eyebrow">YOUR PLACE IN THE WORLD IS WAITING</div>
+        <h2>READY TO <span style="color:var(--orange)">RUMBLE?</span></h2>
+        <p>Copy the server address, open Minecraft and jump into PumpkinGloves SMP. See you in the world!</p>
+        <button class="btn" id="copyBtnBottom">🎃 COPY SERVER IP</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span><strong>🎃 PUMPKINGLOVES SMP</strong> — Grow your legacy.</span>
+      <span>Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Replace this with your real Minecraft server address.
+    const SERVER_IP = "chords-guyana.tun.ply.gg";
+
+    const copyServerIp = async () => {
+      try {
+        await navigator.clipboard.writeText(SERVER_IP);
+        document.querySelectorAll("#copyBtn, #copyBtnBottom").forEach(btn => {
+          const old = btn.textContent;
+          btn.textContent = "✓ COPIED!";
+          setTimeout(() => btn.textContent = old, 1600);
+        });
+      } catch {
+        alert("Your server IP is: " + SERVER_IP + "\\nReplace chords-guyana.tun.ply.gg in the HTML with your real address.");
+      }
+    };
+
+    document.getElementById("copyBtn").addEventListener("click", copyServerIp);
+    document.getElementById("copyBtnBottom").addEventListener("click", copyServerIp);
+    document.getElementById("menu").addEventListener("click", () => {
+      document.getElementById("navlinks").classList.toggle("open");
+    });
+    document.querySelectorAll(".navlinks a").forEach(link => {
+      link.addEventListener("click", () => document.getElementById("navlinks").classList.remove("open"));
+    });
+  </script>
+</body>
+</html>
